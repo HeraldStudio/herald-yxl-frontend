@@ -1,0 +1,129 @@
+#app {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #000 url("http://static.myseu.cn/2018-05-21-wallhaven-611642.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Hiragino Sans', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#app .title-bar {
+  font-size: 36px;
+  padding: 30px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#app .title-bar .logo {
+  width: 120px;
+  height: 120px;
+  margin-right: 20px;
+}
+
+#app .title-bar .title {
+  color: #f6d469;
+  font-weight: bold;
+  text-align: center;
+}
+
+#app .flip-list-move {
+  transition: transform 1s;
+}
+
+#app .result {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 120px;
+  bottom: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  color: #fff;
+}
+
+#app .result .candidate {
+  width: 9%;
+  height: 49%;
+  margin: 0.5%;
+  padding: 10px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  border-radius: 5px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+#app .result .candidate > * + * {
+  margin-top: 10px;
+}
+
+#app .result .candidate .blank {
+  transition-timing-function: linear;
+}
+
+#app .result .candidate .tube {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 30px;
+  margin-bottom: -20px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  transition-timing-function: linear;
+}
+
+#app .result .candidate .tube .normal,
+#app .result .candidate .tube .special {
+  display: block;
+  opacity: 0.8;
+  box-shadow: inset 10px 10px 30px rgba(255,255,255,0.3);
+  transition-timing-function: linear;
+}
+
+#app .result .candidate .tube .normal {
+  background: #edd559;
+}
+
+#app .result .candidate .tube .special {
+  background: #ff894f;
+}
+
+#app .result .candidate .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+#app .result .candidate .name {
+  font-size: 20px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#app .result .candidate .score {
+  font-size: 20px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}

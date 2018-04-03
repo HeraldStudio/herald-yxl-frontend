@@ -2,11 +2,35 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <title>最具影响力毕业生投票</title>
+    <title>最具影响力毕业生投票结果展示</title>
+    <link rel="stylesheet" href="index.css"/>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.12.12/xlsx.core.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <div id="app">
+      <div class="title-bar">
+        <img class="logo" src="logo.png"/>
+        <div class="title">
+          东南大学中南置地杯 2018 年度最具影响力毕业生投票结果
+        </div>
+      </div>
+      <transition-group class="result" name="flip-list">
+        <div class="candidate" v-for="(candidate, i) in candidates" :key="candidate.name">
+          <div class="blank" :style="{ flexGrow: (1 - candidate.total / maxTotal) * 100, transition: pendingCandidates && candidate.total / maxTotal * duration + 'ms' }"></div>
+          <div class="tube" :style="{ flexGrow: candidate.total / maxTotal * 100, transition: pendingCandidates && candidate.total / maxTotal * duration + 'ms' }">
+            <div class="normal" :style="{ flexGrow: candidate.normalTotal / maxTotal * 100, transition: pendingCandidates && candidate.total / maxTotal * duration + 'ms' }"></div>
+            <div class="special" :style="{ flexGrow: candidate.specialTotal / maxTotal * 100, transition: pendingCandidates && candidate.total / maxTotal * duration + 'ms' }"></div>
+          </div>
+          <img class="avatar" :src="candidate.avatar"/>
+          <div class="name">{{ i + 1 }}: {{ candidate.name }}</div>
+          <transition name="slide">
+            <div class="score">{{ pendingCandidates ? '?' : candidate.total }}</div>
+          </transition>
+        </div>
+      </transition-group>
+    </div>
+    <script type="text/babel" src="index.js"></script>
   </body>
 </html>
