@@ -24,7 +24,7 @@
             <div class="special" :style="{ flexGrow: candidate.specialTotal / maxTotal * 100, transition: pendingCandidates && candidate.total / maxTotal * duration + 'ms' }"></div>
           </div>
           <img class="avatar" :src="candidate.avatar"/>
-          <div class="name">{{ i + 1 }}: {{ candidate.name }}</div>
+          <div class="name">{{ candidate.id }}: {{ candidate.name }}</div>
           <transition name="slide">
             <div class="score">{{ pendingCandidates ? '?' : candidate.total }}</div>
           </transition>
