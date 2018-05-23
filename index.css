@@ -53,7 +53,7 @@
   width: 9%;
   height: 49%;
   margin: 0.5%;
-  padding: 10px 0;
+  padding: 15px 0;
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
@@ -64,6 +64,7 @@
   border-radius: 5px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  line-height: 1.7em;
 }
 
 #app .result .candidate > * + * {
@@ -121,7 +122,7 @@
 }
 
 #app .result .candidate .score {
-  font-size: 20px;
+  font-size: 23px;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
