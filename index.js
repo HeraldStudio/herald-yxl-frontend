@@ -2,7 +2,7 @@ const vm = new Vue({
   el: '#app',
   data() {
     return {
-      candidates: [
+      original: [
         { id: 1, name: '江苏', avatar: 'http://static.myseu.cn/2018-05-22-153041.png' },
         { id: 2, name: '黄鑫晨', avatar: 'http://static.myseu.cn/2018-05-22-153125.png' },
         { id: 3, name: '王奕阳', avatar: 'http://static.myseu.cn/2018-05-22-153143.png' },
@@ -28,17 +28,22 @@ const vm = new Vue({
         normalTotal: 0,
         specialTotal: 0
       })),
+      candidates: null,
       pendingCandidates: [],
-      duration: 15000
+      duration: 15000,
+      shown: false,
+      animating: false
     }
   },
   async created() {
+    this.candidates = this.original
     document.body.ondragleave = e => e.preventDefault()
     document.body.ondrop = async e => {
       e.stopPropagation()
       e.preventDefault()
       let file = e.dataTransfer.files[0]
       let reader = new FileReader()
+      let skeleton = JSON.parse(JSON.stringify(this.original))
       reader.onload = e => {
         let data = e.target.result
         let workbook = XLSX.read(data, { type: 'binary' })
@@ -51,7 +56,7 @@ const vm = new Vue({
           normalTotal = parseFloat(normalTotal)
           specialTotal = parseFloat(specialTotal)
           return { id, name, total, specialTotal, normalTotal }
-        }).sort((a, b) => a.id - b.id).slice(0, 20).map((k, i) => Object.assign(this.candidates[i], k))
+        }).sort((a, b) => a.id - b.id).slice(0, 20).map((k, i) => Object.assign(skeleton[i], k))
         
         this.load({ candidate: csv })
       }
@@ -67,34 +72,23 @@ const vm = new Vue({
   },
   methods: {
     async load(data) {
+      console.log('load')
       let { candidate } = data
-      this.candidates = candidate
-      this.hide()
+      this.pendingCandidates = candidate
     },
     show() {
-      setTimeout(() => {
-        this.candidates = this.pendingCandidates
-        setTimeout(() => {
-          this.pendingCandidates = null
-          this.candidates.sort((a, b) => b.total - a.total)
-        }, this.duration)
-      }, 5000)
-    },
-    hide() {
-      this.pendingCandidates = this.candidates
-      this.candidates = JSON.parse(JSON.stringify(this.pendingCandidates)).map(k => {
-        k.normalTotal = 0
-        k.specialTotal = 0
-        k.total = 0
-        return k
-      })
-    },
-    toggle() {
-      if (this.pendingCandidates) {
-        this.show()
-      } else {
-        this.hide()
+      if (this.shown || this.animating) {
+        return
       }
+      console.log('show')
+      this.animating = true
+      this.candidates = this.pendingCandidates
+      setTimeout(() => {
+        this.pendingCandidates = null
+        this.candidates.sort((a, b) => b.total - a.total)
+        this.shown = true
+        this.animating = false
+      }, this.duration)
     }
   }
 })
