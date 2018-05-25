@@ -68,20 +68,33 @@ const vm = new Vue({
   methods: {
     async load(data) {
       let { candidate } = data
-      this.pendingCandidates = candidate
-      this.candidates = JSON.parse(JSON.stringify(candidate)).map(k => {
-        k.normalTotal = 0
-        k.specialTotal = 0
-        k.total = 0
-        return k
-      })
+      this.candidates = candidate
+      this.hide()
+    },
+    show() {
       setTimeout(() => {
         this.candidates = this.pendingCandidates
         setTimeout(() => {
           this.pendingCandidates = null
           this.candidates.sort((a, b) => b.total - a.total)
         }, this.duration)
-      }, 1000)
+      }, 5000)
+    },
+    hide() {
+      this.pendingCandidates = this.candidates
+      this.candidates = JSON.parse(JSON.stringify(this.pendingCandidates)).map(k => {
+        k.normalTotal = 0
+        k.specialTotal = 0
+        k.total = 0
+        return k
+      })
+    },
+    toggle() {
+      if (this.pendingCandidates) {
+        this.show()
+      } else {
+        this.hide()
+      }
     }
   }
 })

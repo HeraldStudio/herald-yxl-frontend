@@ -16,7 +16,7 @@
           东南大学中南置地杯 2018 年度最具影响力毕业生投票结果
         </div>
       </div>
-      <transition-group class="result" name="flip-list">
+      <transition-group class="result" name="flip-list" @click="toggle()">
         <div class="candidate" v-for="(candidate, i) in candidates" :key="candidate.name">
           <div class="blank" :style="{ flexGrow: (1 - candidate.total / maxTotal) * 100, transition: pendingCandidates && candidate.total / maxTotal * duration + 'ms' }"></div>
           <div class="tube" :style="{ flexGrow: candidate.total / maxTotal * 100, transition: pendingCandidates && candidate.total / maxTotal * duration + 'ms' }">
