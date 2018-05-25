@@ -4,14 +4,14 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background: #000 url("http://static.myseu.cn/2018-05-21-wallhaven-611642.jpg");
+  background: #000 url("http://static.myseu.cn/2018-05-25-wallhaven-211087.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   font-family: 'Hiragino Sans', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #app .title-bar {
-  font-size: 36px;
+  font-size: 40px;
   padding: 30px 0;
   display: flex;
   flex-direction: row;
