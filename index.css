@@ -20,7 +20,7 @@
 }
 
 #app .title-bar .logo {
-  width: 120px;
+  width: 181px;
   height: 120px;
   margin-right: 20px;
 }
@@ -50,9 +50,9 @@
 }
 
 #app .result .candidate {
-  width: 9%;
-  height: 49%;
-  margin: 0.5%;
+  width: 5.9%;
+  height: 98%;
+  margin: 0.2%;
   padding: 15px 0;
   box-sizing: border-box;
   overflow: hidden;
@@ -133,7 +133,7 @@
 }
 
 #app .result .candidate .name {
-  font-size: 20px;
+  font-size: 15px;
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
