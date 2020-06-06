@@ -28,7 +28,7 @@ const vm = new Vue({
       candidateRes: null,
       candidates: null,
       pendingCandidates: [],
-      duration: 1500,
+      duration: 15000,
       shown: false,
       animating: false
     }
