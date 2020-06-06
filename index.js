@@ -65,7 +65,6 @@ const vm = new Vue({
       }
       // 清空投票结果
       if(e.key === 'c'){
-        console.log('clear')
         location.reload()
       }
     })
