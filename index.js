@@ -107,7 +107,8 @@ const vm = new Vue({
     async load(data) {
       // console.log('load')
       let { candidate } = data
-      this.pendingCandidates = candidate
+      // 正经复制一个
+      this.pendingCandidates = this.deepClone(candidate)
     },
     show() {
       if (this.shown || this.animating) {
@@ -121,6 +122,9 @@ const vm = new Vue({
         this.candidates.sort((a, b) => b.total - a.total)
         this.shown = true
         this.animating = false
+        setTimeout(() => {
+          this.lighten()
+        }, 1000)
       }, this.duration)
     },
     // 工具函数
@@ -138,6 +142,14 @@ const vm = new Vue({
         }
       }
       return objClone;
-    }    
+    }, 
+    // 高调显示前十名
+    lighten(){
+      let candidatelist = document.getElementsByClassName('candidate')
+      // 高调现实
+      for(let i = 0; i < 10; i++){
+        candidatelist[i].style.background = 'linear-gradient(180deg, rgba(255, 175, 115, 0.56) 0%, rgba(255, 175, 115, 0) 100%)'
+      }
+    }   
   }
 })
