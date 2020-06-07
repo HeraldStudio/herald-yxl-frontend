@@ -7,7 +7,7 @@
   background: #000 url("http://static.myseu.cn/2018-05-25-wallhaven-211087.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  font-family: 'Hiragino Sans', 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #app .title-bar {
@@ -81,7 +81,7 @@
     filter: saturate(1);
   }
   50% {
-    box-shadow: inset 0 -150px 20px #fff;
+    box-shadow: inset 0 -300px 20px #fff;
     filter: saturate(1.5);
   }
   to {
